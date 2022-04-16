@@ -1,0 +1,73 @@
+<div class="container mt-5">
+    <div class="card mx-auto p-3">
+        <div class="d-flex p-3 justify-content-between">
+            <div class="img">
+                <img src=" https://m.media-amazon.com/images/I/51x8QZgaAaL._AC_SX425_.jpg" alt="" width="90">
+               
+            </div>
+            <div class="quiz-header">
+                <h4>  quizz about xxsubjectxxx</h4>
+                   <p> hello {{pseudo}} </p>
+            </div>
+        </div>
+ 
+    <ng-container *ngIf="!isQuizzCompleted">
+        <div class="d-flex py-3 justify-content-around">
+            <div class="score">
+             <h5> {{point}} point</h5>
+            </div>
+            <div class="question-left">
+                 <span style=" font-style:italic;"> Question  {{currentQuestion+1}}/{{questionList.length}}</span>
+            </div>
+            <div class="timer">
+                <h5>
+ 
+                    {{counter}} sec <i class="fa fa-clock-o" aria-hidden="true"></i>
+                </h5>
+            </div>
+         </div>
+         <div class="px-3 mb-3">
+             <div class="progress  ">
+                 <div class="progress-bar bg-success" role="progressbar" [ngStyle]="{'width':progress+'%'}" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+             </div>
+         </div>
+         <div class="question">
+             <div class="card mx-auto p-1">
+                 <h3> {{questionList[currentQuestion]?.questionText}}</h3>
+             </div>
+         </div>
+         <div class="option">
+             <ol *ngFor="let option of questionList[currentQuestion]?.options">
+                 <li (click)="answer(currentQuestion+1,option)">
+                     <div appChangeBg [isCorrect]="option.correct"  class="card mx-auto p-1">
+                         {{option.text}}
+                     </div>
+                 </li>
+                        
+             </ol>
+         </div>
+     <div class="d-flex justify-content-between">
+        <button disabled class="btn" (click)="prevQuestion()"><i class="fa fa-chevron-left fa-3x" aria-hidden="true"></i> </button>
+        <!-- <button [disabled]="currentQuestion===0" class="btn" (click)="prevQuestion()"><i class="fa fa-chevron-left fa-3x" aria-hidden="true"></i> </button> -->
+         <button class="btn"(click)="refreshQuestion()"> <i class="fa fa-refresh fa-3x" aria-hidden="true"></i></button>
+         <button [disabled]="currentQuestion===questionList.length" class="btn" (click)="nextQuestion()"> <i class="fa fa-chevron-right fa-3x" aria-hidden="true"></i></button>
+     </div>
+     
+    </ng-container>
+    <ng-container *ngIf="isQuizzCompleted" >
+        <div class=" ">
+         
+
+            <div class="result text-center">
+                <h3> The end</h3>
+                <p> result :  </p>
+                <p>total question :{{ questionList.length}} </p>
+                <p>correct answers: {{correctAns}} </p>
+                <p>wrong answers : {{incorrectAns}}</p>
+                <p>your score : {{point}}</p>
+
+            </div>
+        </div>
+    </ng-container>
+    </div>
+</div>

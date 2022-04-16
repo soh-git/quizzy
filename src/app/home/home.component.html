@@ -1,0 +1,14 @@
+<div class="container py-4 bg-light">
+<h1> Welcome to quizzy</h1>
+<p class="col-md-8 ps-4"> n questions. n question = 10 points.</p>
+<h4> rules : </h4>
+<p>60 second to answer.<br> each good answer : +10 points. <br>  incorrect : - 10</p>
+
+<h2> good luck</h2>
+
+<div class="pseudo col-md-5">
+    <label for="">Enter your pseudo ?</label>
+    <input (keyup)="onKeyPseudo($event)" #pseudo type="text" class=" form-control">
+</div>
+ <button [disabled]="pseudoHome===''" class=" btn btn-outline-primary " routerLink="/question" (click)="startQuizz()">   Start</button>
+</div>
